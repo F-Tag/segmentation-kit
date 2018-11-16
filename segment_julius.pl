@@ -25,6 +25,8 @@
 #
 
 use File::Basename 'fileparse';
+use File::Spec::Functions;
+use FindBin qw/$Bin $Script/;
 
 ######################################################################
 ######################################################################
@@ -50,8 +52,15 @@ if ($^O =~ /MSWin/){
     $juliusbin="julius";
 }
 
+
+
+
 ## acoustic model
-$hmmdefs="./models/hmmdefs_monof_mix16_gid.binhmm"; # monophone model
+# $hmmdefs="./models/hmmdefs_monof_mix16_gid.binhmm"; # monophone model
+# $hmmdefs = $Bin."/models/hmmdefs_monof_mix16_gid.binhmm"; # monophone model
+$hmmdefs = catfile( $Bin, 'models', 'hmmdefs_monof_mix16_gid.binhmm' );
+
+
 #$hmmdefs="./models/hmmdefs_ptm_gid.binhmm"; # triphone model
 
 ## HMMList file (needed for triphone model)
